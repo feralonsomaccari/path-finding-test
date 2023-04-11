@@ -1,0 +1,15 @@
+.wrapper {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.menu-container{
+  display: flex;
+}
+
+.main-canvas {
+  width: 801px;
+  height: 601px;
+}
