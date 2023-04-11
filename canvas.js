@@ -39,7 +39,7 @@ export class Canvas {
     drawBoxWithPos = (x, y, color) => {
         if (`${x}-${y}` in this.objects) return;
         this.ctx.beginPath();
-        this.ctx.fillStyle = color ?? 'green';
+        this.ctx.fillStyle = color ?? 'lightGray';
         this.ctx.fillRect(x * 20, y * 20, 20, 20)
         this.ctx.stroke();
     }
@@ -118,14 +118,12 @@ export class Canvas {
         }
 
         let player
-        let object2;
 
         // Draw playes
         Object.keys(this.objects).forEach((key) => {
             const gameObject = this.objects[key]
             this.drawObject(gameObject);
             this.directionInput.direction;
-            object2 = gameObject;
             if (gameObject.type === "Player") {
                 player = gameObject
                 gameObject.update({
@@ -136,7 +134,12 @@ export class Canvas {
         })
 
         //Draw paths
-        findShortestPath(this, player, object2)
+        const objects = Object.values(this.objects)
+        objects.shift();
+        objects.forEach((obj) => {
+            findShortestPath(this, player, obj)
+        })
+
 
         this.drawGrid();
 

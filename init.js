@@ -19,8 +19,16 @@ const calculateFps = () => {
     fpsElement.innerHTML = "fps: " + fps
 }
 
+let lastFrameTimeMs = 0 // The last time the loop was run
+let maxFPS = 40; // The maximum FPS we want to allow
+
 function startGameLoop(mainCanvas) {
-    const step = () => {
+    const step = (timestamp) => {
+        if (timestamp < lastFrameTimeMs + (1000 / maxFPS)) {
+            requestAnimationFrame(step);
+            return;
+        }
+        lastFrameTimeMs = timestamp;
         calculateFps();
         mainCanvas.clear();
         mainCanvas.draw();
@@ -35,7 +43,7 @@ function init() {
     directionInput.init();
     const mainCanvas = new Canvas(canvas, ctx, directionInput);
     const player = new Player(10,10)
-    const objects = [new GameObject(20, 10), new GameObject(25, 25)]
+    const objects = [new GameObject(20, 7), new GameObject(25, 25), new GameObject(20, 12, 0), new GameObject(20, 1, 0)]
     mainCanvas.addObjects(player, ...objects)
 
 

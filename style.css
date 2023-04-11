@@ -1,3 +1,8 @@
+html {
+  background-color: black;
+  color: #fff;
+}
+
 .wrapper {
   width: 800px;
   display: flex;
@@ -12,4 +17,5 @@
 .main-canvas {
   width: 801px;
   height: 601px;
+  border: solid 1px white;
 }
