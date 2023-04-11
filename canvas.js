@@ -44,11 +44,21 @@ export class Canvas {
         this.ctx.stroke();
     }
 
+    drawLineWithPos = (x, y, color) => {
+        if (`${x}-${y}` in this.objects) return;
+        this.ctx.beginPath();
+        this.ctx.fillStyle = color ?? 'green';
+        this.ctx.fillRect((x * 20)+7.5, (y * 20)+10, 5, 5)
+        this.ctx.stroke();
+    }
+
     drawObject = (object) => {
         this.ctx.beginPath();
         this.ctx.fillStyle = object.color;
         this.ctx.fillRect(object.getPos().x * 20, object.getPos().y * 20, 20, 20)
         this.ctx.stroke();
+        // this.grid2d[object.getPos().x][object.getPos().y] = object.type
+        
     }
 
     getPositionByMouse = (evt) => {
@@ -103,7 +113,6 @@ export class Canvas {
         // Draw map
         for (let x = 0; x < this.grid2d.length; x++) {
             for (let y = 0; y < this.grid2d[0].length; y++) {
-                // if (this.grid2d[x][y] === 'x') this.drawBoxWithPos(x, y)
                 if (this.grid2d[x][y] === 'd') this.drawBoxWithPos(x, y)
             }
         }
@@ -120,6 +129,7 @@ export class Canvas {
             if (gameObject.type === "Player") {
                 player = gameObject
                 gameObject.update({
+                    map: this.grid2d,
                     arrow: this.directionInput.direction,
                 });
             }

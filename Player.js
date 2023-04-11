@@ -12,23 +12,28 @@ export class Player extends GameObject {
 
     update(state) {
         if (state.arrow) {
-            this.move(state.arrow)
+            this.move(state.arrow, state.map)
         }
     }
 
-    move = (direction) => {
+    isSpaceTaken(x, y, map) {
+        if(map[x][y] === 'd') return true
+        if(map[x][y] === 'object') return true
+    }
+
+    move = (direction, map) => {
         switch (direction) {
             case "up":
-                if (this.y > 0) return this.y -= 1
+                if (this.y > 0 && !this.isSpaceTaken(this.x, this.y-1, map)) return this.y -= 1
                 break;
             case "right":
-                if (this.x < (800 - 20) / 20) return this.x += 1
+                if (this.x < (800 - 20) / 20 && !this.isSpaceTaken(this.x+1, this.y, map)) return this.x += 1
                 break;
             case "down":
-                if (this.y < (600 - 20) / 20) return this.y += 1
+                if (this.y < (600 - 20) / 20 && !this.isSpaceTaken(this.x, this.y + 1, map)) return this.y += 1
                 break;
             case "left":
-                if (this.x > 0) return this.x -= 1
+                if (this.x > 0 && !this.isSpaceTaken(this.x-1, this.y, map)) return this.x -= 1
                 break;
         }
     }

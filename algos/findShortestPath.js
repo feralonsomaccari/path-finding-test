@@ -11,7 +11,7 @@ export const findShortestPath = async (canvas, obj1, obj2) => {
             y >= 0 &&
             x < grid.length &&
             y < grid[0].length &&
-            (grid[x][y] === 0)
+            (grid[x][y] === 0 || grid[x][y] === 'player' || grid[x][y] === 'object')
         ) {
             grid[x][y] = 1 // mark as visited
             return true
@@ -41,6 +41,6 @@ export const findShortestPath = async (canvas, obj1, obj2) => {
     // if (!shortestPath.length) return console.log("NOT POSSIBLE :(")
     for (let i = 0; i < shortestPath.length; i++) {
         // await sleep(50)
-        canvas.drawBoxWithPos(shortestPath[i][0], shortestPath[i][1], 'purple')
+        canvas.drawLineWithPos(shortestPath[i][0], shortestPath[i][1], 'black')
     }
 }

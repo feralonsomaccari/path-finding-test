@@ -3,7 +3,7 @@ export class GameObject {
         this.x = x ?? 0;
         this.y = y ?? 0
         this.color = this.color ?? 'red';
-        this.type = 'Object'
+        this.type = 'object'
         this.value = 0
     }
 
