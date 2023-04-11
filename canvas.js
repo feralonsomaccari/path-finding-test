@@ -2,9 +2,10 @@ import { getClosestMultiplier } from './utils.js'
 
 export class Canvas {
 
-    constructor(canvas, ctx, width, height, boxSize) {
+    constructor(canvas, ctx, directionInput, width, height, boxSize) {
         this.canvas = canvas
         this.ctx = ctx;
+        this.directionInput = directionInput
 
         this.CANVAS_WIDTH = width ?? 800;
         this.CANVAS_HEIGHT = height ?? 600;
@@ -88,7 +89,14 @@ export class Canvas {
 
         // Draw playes
         Object.keys(this.objects).forEach((key) => {
-            this.drawObject(this.objects[key]);
+            const gameObject = this.objects[key]
+            this.drawObject(gameObject);
+            this.directionInput.direction;
+            if (gameObject.type === "Player"){
+                gameObject.update({
+                    arrow: this.directionInput.direction,
+                });
+            }
         })
 
         this.drawGrid();

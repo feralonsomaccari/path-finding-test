@@ -1,6 +1,7 @@
 import { Canvas } from './Canvas.js'
 import { Player } from './Player.js'
 import { GameObject } from './GameObject.js'
+import { DirectionInput } from './DirectionInput.js'
 
 const canvas = document.querySelector("#canvas")
 const ctx = canvas.getContext("2d");
@@ -30,16 +31,16 @@ function startGameLoop(mainCanvas) {
 }
 
 function init() {
-    const mainCanvas = new Canvas(canvas, ctx);
+    const directionInput = new DirectionInput();
+    directionInput.init();
+    const mainCanvas = new Canvas(canvas, ctx, directionInput);
     const player = new Player(10,10)
     const objects = [new GameObject(20, 10), new GameObject(25, 25)]
     mainCanvas.addObjects(player, ...objects)
 
     startGameLoop(mainCanvas);
 
-    window.addEventListener('keydown', (e) => {
-        player.move(e.code)
-    })
+
 
 }
 
