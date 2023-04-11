@@ -38,10 +38,12 @@ function init() {
     const objects = [new GameObject(20, 10), new GameObject(25, 25)]
     mainCanvas.addObjects(player, ...objects)
 
+
+    window.addEventListener('mouseup', function () {
+        mainCanvas.removeListener('mousemove', mainCanvas.mouseMoveListener, true);
+    });
+
     startGameLoop(mainCanvas);
-
-
-
 }
 
 init();

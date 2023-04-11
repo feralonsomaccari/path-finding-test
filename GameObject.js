@@ -4,6 +4,7 @@ export class GameObject {
         this.y = y ?? 0
         this.color = this.color ?? 'red';
         this.type = 'Object'
+        this.value = 0
     }
 
     getPos = () => {

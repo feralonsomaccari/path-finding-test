@@ -4,9 +4,9 @@ export class Player extends GameObject {
     constructor(x, y, color) {
         super();
         this.x = x ?? 0;
-        this.y = y ?? 0
-        this.color = color ?? 'blue'
-        this.type = "Player"
+        this.y = y ?? 0;
+        this.color = color ?? 'blue';
+        this.type = "Player";
 
     }
 
