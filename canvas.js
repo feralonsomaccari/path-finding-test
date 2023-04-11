@@ -27,17 +27,8 @@ export class Canvas {
         this.ctx.stroke();
     }
 
-    addEl = (x, y, value) => {
+    addEl = (x, y) => {
         if (`${x}-${y}` in this.objects) return;
-        this.grid2d[x][y] = value
-    }
-
-    drawBoxWithPosFill = (x, y) => {
-        if (`${x}-${y}` in this.objects) return;
-        this.ctx.beginPath();
-        this.ctx.fillStyle = 'red';
-        this.ctx.fillRect(x * 20, y * 20, 20, 20)
-        this.ctx.stroke();
     }
 
     drawBoxWithPos = (x, y) => {
@@ -48,12 +39,11 @@ export class Canvas {
         this.ctx.stroke();
     }
 
-    drawObject = (x, y, value) => {
+    drawObject = (object) => {
         this.ctx.beginPath();
-        this.ctx.fillStyle = 'blue';
-        this.ctx.fillRect(x * 20, y * 20, 20, 20)
+        this.ctx.fillStyle = object.color;
+        this.ctx.fillRect(object.getPos().x * 20, object.getPos().y * 20, 20, 20)
         this.ctx.stroke();
-        this.grid2d[x][y] = value
     }
 
     getPositionByMouse = (evt) => {
@@ -65,9 +55,9 @@ export class Canvas {
     }
 
     addObjects = (...objects) => {
-        // objects.forEach((object) => [
-        //     this.objects[`${object.getObject().x}-${object.getObject().y}`] = object
-        // ])
+        objects.forEach((object) => [
+            this.objects[`${object.getPos().x}-${object.getPos().y}`] = object
+        ])
     }
 
     getPosInfo = (x, y) => {
@@ -89,12 +79,17 @@ export class Canvas {
     }
 
     draw = () => {
+        // Draw map
         for (let x = 0; x < this.grid2d.length; x++) {
             for (let y = 0; y < this.grid2d[0].length; y++) {
                 if (this.grid2d[x][y] === 'x') this.drawBoxWithPos(x, y)
-                if (this.grid2d[x][y] === 'f') this.drawBoxWithPosFill(x, y)
             }
         }
+
+        // Draw playes
+        Object.keys(this.objects).forEach((key) => {
+            this.drawObject(this.objects[key]);
+        })
 
         this.drawGrid();
 

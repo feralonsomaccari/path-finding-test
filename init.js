@@ -1,4 +1,6 @@
-import { Canvas } from './canvas.js'
+import { Canvas } from './Canvas.js'
+import { Player } from './Player.js'
+import { GameObject } from './GameObject.js'
 
 const canvas = document.querySelector("#canvas")
 const ctx = canvas.getContext("2d");
@@ -28,13 +30,16 @@ function startGameLoop(mainCanvas) {
 }
 
 function init() {
-
-    let called = false;
     const mainCanvas = new Canvas(canvas, ctx);
-    const objects = [new Object(10, 10, 0), new Object(25, 25, 0)]
-    mainCanvas.addObjects(...objects)
+    const player = new Player(10,10)
+    const objects = [new GameObject(20, 10), new GameObject(25, 25)]
+    mainCanvas.addObjects(player, ...objects)
 
     startGameLoop(mainCanvas);
+
+    window.addEventListener('keydown', (e) => {
+        player.move(e.code)
+    })
 
 }
 
