@@ -41,8 +41,8 @@ export const findShortestPath = async (canvas, obj1, obj2) => {
     }
 
     // if (!shortestPath.length) return console.log("NOT POSSIBLE :(")
+    // if (shortestPath.length > 15) return;
     for (let i = 0; i < shortestPath.length; i++) {
-        // await sleep(50)
         canvas.drawLineWithPos(shortestPath[i][0], shortestPath[i][1], getRandomColor())
     }
 }
