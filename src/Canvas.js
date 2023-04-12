@@ -1,5 +1,5 @@
-import { findShortestPath } from './algos/findShortestPath.js'
-import { getClosestMultiplier } from './utils.js'
+import { findShortestPath } from '../algos/findShortestPath.js'
+import { getClosestMultiplier } from '../utils/utils.js'
 
 export class Canvas {
 

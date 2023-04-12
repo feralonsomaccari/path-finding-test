@@ -1,4 +1,4 @@
-import { getRandomColor } from '../utils.js'
+import { getRandomColor } from '../utils/utils.js'
 
 /**
  * Find the shortest path between two points using BFS algorithm

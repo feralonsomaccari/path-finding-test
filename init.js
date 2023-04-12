@@ -1,7 +1,7 @@
-import { Canvas } from './Canvas.js'
-import { Player } from './Player.js'
-import { GameObject } from './GameObject.js'
-import { DirectionInput } from './DirectionInput.js'
+import { Canvas } from './src/Canvas.js'
+import { Player } from './src/Player.js'
+import { GameObject } from './src/GameObject.js'
+import { DirectionInput } from './src/DirectionInput.js'
 
 const canvas = document.querySelector("#canvas")
 const ctx = canvas.getContext("2d");
