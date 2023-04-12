@@ -22,16 +22,17 @@ export const findShortestPath = async (canvas, obj1, obj2) => {
     }
 
     while (queue.length) {
-        let dequeue = queue.shift(); // v
+        let deque = queue.shift(); // v
 
-        const path = [...dequeue.path]
-        path.push(dequeue.node)
+        const path = [...deque.path]
+        path.push(deque.node)
 
-        let [x, y] = dequeue.node;
+        let [x, y] = deque.node;
 
-        if (x === obj2.getPos().x && y === obj2.getPos().y) {
-            shortestPath = dequeue.path
-            break; // Found shortest path
+        if (x === obj2.getPos().x && y === obj2.getPos().y) { 
+            // Found shortest path
+            shortestPath = deque.path
+            break; 
         }
 
         if (legalMovement(x, y - 1, grid)) queue.push({ node: [x, y - 1], path: [...path] }); // top
@@ -41,7 +42,10 @@ export const findShortestPath = async (canvas, obj1, obj2) => {
     }
 
     // if (!shortestPath.length) return console.log("NOT POSSIBLE :(")
+
+    // Stop seeing player after certain amount of distance
     // if (shortestPath.length > 15) return;
+    
     for (let i = 0; i < shortestPath.length; i++) {
         canvas.drawLineWithPos(shortestPath[i][0], shortestPath[i][1], getRandomColor())
     }

@@ -1,6 +1,6 @@
-import { GameObject } from './GameObject.js'
+import GameObject from './GameObject.js'
 
-export class Player extends GameObject {
+export default class Player extends GameObject {
     constructor(x, y, color) {
         super();
         this.x = x ?? 0;

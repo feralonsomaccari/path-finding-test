@@ -1,7 +1,7 @@
 import { findShortestPath } from '../algos/findShortestPath.js'
 import { getClosestMultiplier } from '../utils/utils.js'
 
-export class Canvas {
+export default class Canvas {
 
     constructor(canvas, ctx, directionInput, width, height, boxSize) {
         this.canvas = canvas
